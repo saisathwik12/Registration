@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .div1{
+            width: fit-content;
+            margin: 50px auto;
+            border: 1px outset black;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.782);
+        }
+        form{
+            padding: 20px 50px;
+        }
+        form *{
+            margin: 5px;
+        }
+        input{
+            padding: 10px;
+            width: 300px;
+            font-size: medium;
+            &:focus{
+                box-shadow: 1px 1px 10px rgb(12, 120, 253);
+            }
+
+        }
+        #agree{
+            width: 30px;
+            padding: 10px;
+        }
+        form h1{
+            text-align: center;
+            color: rgb(38, 38, 38);
+            margin: 20px;
+            
+        }
+        label{
+            font-size: larger;
+        }
+        select{
+            font-size: large;
+            padding: 10px;
+        }
+        #submit{
+            
+            background-color: rgb(59, 128, 255);
+            color: white;
+            font-size: larger;
+            border: 0;
+            width: 320px;
+            &:hover{
+                background-color: rgb(114, 164, 255);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <form action="" >
+            <h1>REGISTRATION</h1>
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" required ><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required ><br>
+
+            <label for="confirmpassword">Confirm Password:</label><br>
+            <input type="password" id="confirmpassword" name="confirmpassword" required ><br>
+
+            <select name="gender" id="gender">
+                <option value="gender" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel" id="phone" name="phone" required><br>
+
+            <input type="checkbox" id="agree" name="agree" required>
+            <label for="agree">I agree to the terms and conditions</label><br>
+
+            <input type="submit" id="submit" value="Register"><br>
+            <br>
+            <h2 id="register-msg"></h2>
+            
+        </form>
+    </div>
+
+        <script>
+
+            const form = document.getElementsByTagName("form")[0]
+            const username = document.getElementById("username")
+            const email = document.getElementById("email")
+            const password = document.getElementById("password")
+            const conpass = document.getElementById("confirmpassword")
+            const submit = document.getElementById("submit")
+            const msg = document.getElementById("register-msg")
+
+            form.addEventListener("submit",(e) => {
+                if(password.value !== conpass.value){
+                    msg.textContent = "Registration Unsuccessful"
+                }
+                else{
+                    location.href = "verifyotp.html"
+
+                    const data = {
+                    "username" : username.value,
+                    "email" : email.value,
+                    "password": password.value
+                    }
+
+                    for(let d in data){
+                        localStorage.setItem(d,data[d])
+                    }
+                    
+                }
+                e.preventDefault()
+
+ 
+            })
+
+
+
+                 
+
+
+        </script>
+        
+    
+</body>
+</html>

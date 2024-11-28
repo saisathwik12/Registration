@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #div2{
+            width: fit-content;
+            margin: 10px auto;
+            margin-top: 100px;
+            text-align: center;
+            font-size: large;
+            border: 1px outset black;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.782);
+        }
+        #div2 *{
+            margin: 10px;
+        }
+        input{
+            padding: 10px;
+            width: 300px;
+            font-size: medium;
+            &:focus{
+                box-shadow: 1px 1px 10px rgb(12, 120, 253);
+            }
+
+        }
+        label{
+            font-size: larger;
+        }
+
+        button{
+            background-color: rgb(59, 128, 255);
+            color: white;
+            font-size: larger;
+            border: 0;
+            width: 320px;
+            &:hover{
+                background-color: rgb(114, 164, 255);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="div2">
+        <div class="otpdiv">
+            <label for="otp">Enter OTP :</label><br>
+            <input type="text" id="otp" name="otp"><br>
+            <button id="otpsubmit" name="otp">Submit</button>
+        </div>
+        <button id="sendotp" type="button">Send OTP</button>
+        <p id="otpnum"></p>
+        <h3></h3>
+    </div>
+
+    <script>
+        const otp = document.getElementById("otp")
+        const otpsubmit = document.getElementById("otpsubmit")
+        const otpdiv = document.getElementsByClassName("otpdiv")[0]
+        const h3 = document.getElementsByTagName("h3")[0]
+        const sendotp = document.getElementById("sendotp")
+        const otpnum = document.getElementById("otpnum")
+
+        sendotp.addEventListener("click", (e) =>{
+                const generate = Math.floor(Math.random()*100000)
+                console.log("Generated Otp :", generate);
+                otpnum.textContent = generate
+                e.preventDefault()
+                
+                otp.addEventListener("input", (e2) => {
+                    const Enter_otp = e2.target.value
+
+                    otpsubmit.addEventListener("click", (e3) => {
+                        if(generate == Enter_otp){
+                            h3.textContent = "Successful"
+                            location.href = "login.html"
+                        }
+                        else{
+                            h3.textContent = "Invalid Valid"
+                        }
+                        
+                    })
+                })
+
+            })
+
+
+
+    </script>
+</body>
+</html>

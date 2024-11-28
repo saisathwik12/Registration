@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script type="module">
+
+        import {data} from "./data.js"
+        console.log(data)
+        const body = document.getElementsByTagName("body")[0];
+        const div1 = document.createElement("div");
+        
+        const content = []
+        for(let con in data[0]){
+            content.push(con);
+        }
+        
+        for(let objs of data){
+            const div2 = document.createElement("div");
+            div2.style.backgroundColor = ""
+            div2.style.border = "2px solid black"
+            div2.style.boxShadow = "5px 5px  10px black"
+            div2.style.margin = "10px 10px"
+            div2.style.padding = "10px"
+            div2.style.textAlign = "center"
+            div2.style.width = "300px"
+            
+            
+            
+            const img = document.createElement("img");
+            const h1 = document.createElement("h1");
+            const p1 = document.createElement("p");
+            const span1 = document.createElement("span");
+            const span2 = document.createElement("span");
+            
+
+            for(let im in objs){
+                if(im === "image"){
+                    img.setAttribute("src",img.textContent = objs[im]);
+                    img.setAttribute("width","150px");
+                    img.setAttribute("height","150px");
+                    img.style.marginTop = "30px"
+                }
+                else if (im ==="title"){
+                    h1.textContent = objs[im]
+                    h1.style.color = "#22223b"
+                    h1.style.fontSize = "20px"
+                    h1.style.fontFamily = "verdana, sans-serif"
+                    h1.style.margin = "20px auto"
+                }
+                else if(im ==="description"){
+                    p1.textContent = objs[im]
+                    p1.style.margin = "20px auto"
+                    p1.style.fontFamily = "Bradley Hand, cursive"
+                    p1.style.fontSize = "small"
+
+                }
+                else if(im === "rating"){
+                    for(let rat in objs[im]){
+                        if(rat == "rate"){
+                            span1.textContent = "Rate" + " : " +objs[im][rat]
+                            span1.style.padding = "20px"
+                            span1.style.fontSize = "large"
+
+                        }
+                        else{
+                            span2.textContent = "Count" + " : " + objs[im][rat]
+                            span2.style.padding = "20px"
+                            span2.style.fontSize = "large"
+                        }
+                        
+                    }
+                }
+            }
+
+            const button = document.createElement("button");
+            button.setAttribute("type","button");
+            button.textContent = "See More";
+            button.style.background = "#1F51FF"
+            button.style.color = "white"
+            button.style.margin = "10px auto"
+            button.style.padding = "10px 20px"
+            button.style.display = "block"
+            button.style.cursor = "pointer"
+
+            div1.appendChild(div2);
+            div2.appendChild(img);
+            div2.appendChild(h1);
+            div2.appendChild(p1);
+            div2.appendChild(span1);
+            div2.appendChild(span2);
+            div2.appendChild(button);
+
+        }    
+
+        div1.style.display = "flex"
+        div1.style.justifyContent = "space-around"
+        div1.style.flexWrap = "wrap"
+        div1.style.maxWidth = "1500px"
+        div1.style.margin = "10px auto"
+        div1.style.border = "5px solid black"
+
+        body.appendChild(div1);
+
+
+    </script>
+
+</body>
+</html>
